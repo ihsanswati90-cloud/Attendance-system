@@ -1,19 +1,80 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Attendance System</title>
-    <link rel="stylesheet" href="style.css"> <!-- link CSS -->
-</head>
-<body>
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
 
-<h1>Attendance System</h1>
-<p id="date"></p> <!-- current date -->
+.container {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: 500px;
+}
 
-<input type="text" id="name" placeholder="Enter Student Name">
-<button onclick="markAttendance()">Mark Attendance</button>
+h1 {
+    text-align: center;
+    color: #333;
+}
 
-<ul id="list"></ul>
+p#date {
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+}
 
-<script src="script.js"></script> <!-- link JS -->
-</body>
-</html>
+.input-area {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+button.status-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+button.present {
+    background: #28a745;
+    color: white;
+}
+
+button.absent {
+    background: #dc3545;
+    color: white;
+}
