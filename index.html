@@ -1,18 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Attendance System</title>
-</head>
-<body>
+// Load saved attendance
+function loadData() {
+  let data = JSON.parse(localStorage.getItem("attendance")) || [];
+  let list = document.getElementById("list");
 
-<h1>Attendance System</h1>
+  list.innerHTML = "";
 
-<input type="text" id="name" placeholder="Enter Name">
-<button onclick="markAttendance()">Mark</button>
+  data.forEach(name => {
+    let li = document.createElement("li");
+    li.innerText = name + " - Present";
+    list.appendChild(li);
+  });
+}
 
-<ul id="list"></ul>
-
-<script>
+// Mark attendance
 function markAttendance() {
   let name = document.getElementById("name").value;
 
@@ -21,12 +21,16 @@ function markAttendance() {
     return;
   }
 
-  let li = document.createElement("li");
-  li.innerText = name + " - Present";
+  let data = JSON.parse(localStorage.getItem("attendance")) || [];
+  data.push(name);
+  localStorage.setItem("attendance", JSON.stringify(data));
 
-  document.getElementById("list").appendChild(li);
+  document.getElementById("name").value = "";
+  loadData();
 }
-</script>
 
-</body>
-</html>
+// Show current date
+window.onload = function() {
+  document.getElementById("date").innerText = new Date().toDateString();
+  loadData();
+}
