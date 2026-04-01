@@ -1,22 +1,67 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: #f4f4f4;
+// Load students from localStorage
+function loadStudents() {
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    let tbody = document.querySelector("#attendance-table tbody");
+    tbody.innerHTML = "";
+
+    students.forEach((student, index) => {
+        let tr = document.createElement("tr");
+
+        let tdName = document.createElement("td");
+        tdName.innerText = student.name;
+
+        let tdStatus = document.createElement("td");
+        tdStatus.innerText = student.status || "Absent";
+
+        let tdAction = document.createElement("td");
+
+        let presentBtn = document.createElement("button");
+        presentBtn.innerText = "Present";
+        presentBtn.className = "status-btn present";
+        presentBtn.onclick = () => markStatus(index, "Present");
+
+        let absentBtn = document.createElement("button");
+        absentBtn.innerText = "Absent";
+        absentBtn.className = "status-btn absent";
+        absentBtn.onclick = () => markStatus(index, "Absent");
+
+        tdAction.appendChild(presentBtn);
+        tdAction.appendChild(absentBtn);
+
+        tr.appendChild(tdName);
+        tr.appendChild(tdStatus);
+        tr.appendChild(tdAction);
+
+        tbody.appendChild(tr);
+    });
 }
-h1 {
-    color: #333;
+
+// Add new student
+function addStudent() {
+    let name = document.getElementById("name").value.trim();
+    if (name === "") {
+        alert("Enter student name!");
+        return;
+    }
+
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    students.push({ name: name, status: "Absent" });
+    localStorage.setItem("students", JSON.stringify(students));
+
+    document.getElementById("name").value = "";
+    loadStudents();
 }
-input, button {
-    padding: 10px;
-    margin: 10px;
+
+// Mark Present/Absent
+function markStatus(index, status) {
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    students[index].status = status;
+    localStorage.setItem("students", JSON.stringify(students));
+    loadStudents();
 }
-button {
-    background: green;
-    color: white;
-    border: none;
-}
-li {
-    background: white;
-    margin: 5px;
-    padding: 10px;
+
+// Show current date
+window.onload = function() {
+    document.getElementById("date").innerText = new Date().toDateString();
+    loadStudents();
 }
