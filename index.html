@@ -1,36 +1,19 @@
-// Load saved attendance
-function loadData() {
-  let data = JSON.parse(localStorage.getItem("attendance")) || [];
-  let list = document.getElementById("list");
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance System</title>
+    <link rel="stylesheet" href="style.css"> <!-- link CSS -->
+</head>
+<body>
 
-  list.innerHTML = "";
+<h1>Attendance System</h1>
+<p id="date"></p> <!-- current date -->
 
-  data.forEach(name => {
-    let li = document.createElement("li");
-    li.innerText = name + " - Present";
-    list.appendChild(li);
-  });
-}
+<input type="text" id="name" placeholder="Enter Student Name">
+<button onclick="markAttendance()">Mark Attendance</button>
 
-// Mark attendance
-function markAttendance() {
-  let name = document.getElementById("name").value;
+<ul id="list"></ul>
 
-  if (name === "") {
-    alert("Enter name");
-    return;
-  }
-
-  let data = JSON.parse(localStorage.getItem("attendance")) || [];
-  data.push(name);
-  localStorage.setItem("attendance", JSON.stringify(data));
-
-  document.getElementById("name").value = "";
-  loadData();
-}
-
-// Show current date
-window.onload = function() {
-  document.getElementById("date").innerText = new Date().toDateString();
-  loadData();
-}
+<script src="script.js"></script> <!-- link JS -->
+</body>
+</html>
