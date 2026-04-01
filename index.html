@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Attendance System</title>
-    <link rel="stylesheet" href="style.css"> <!-- link CSS -->
+    <meta charset="UTF-8">
+    <title>Attendance System - Pro</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Attendance System</h1>
-<p id="date"></p> <!-- current date -->
+<div class="container">
+    <h1>Attendance System</h1>
+    <p id="date"></p>
 
-<input type="text" id="name" placeholder="Enter Student Name">
-<button onclick="markAttendance()">Mark Attendance</button>
+    <div class="input-area">
+        <input type="text" id="name" placeholder="Enter Student Name">
+        <button onclick="addStudent()">Add Student</button>
+    </div>
 
-<ul id="list"></ul>
+    <table id="attendance-table">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Students will appear here -->
+        </tbody>
+    </table>
+</div>
 
-<script src="script.js"></script> <!-- link JS -->
+<script src="script.js"></script>
 </body>
 </html>
